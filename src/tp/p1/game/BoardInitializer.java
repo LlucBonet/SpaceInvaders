@@ -46,7 +46,7 @@ public class BoardInitializer {
 		if(level.name() == "EASY") {
 			for(int i = 0; i < level.getNumDestroyerShip(); i++) {
 				GameObject destroyerShip = new DestroyerShip(game, 2, Game.DIM_X/2 + i, 1, 1, 1, 10);
-				board.add(destroyerShip.addBomb());		
+//				board.add(destroyerShip.addBomb());		
 				board.add(destroyerShip);
 ;
 			}
@@ -54,14 +54,14 @@ public class BoardInitializer {
 		else if (level.name() == "HARD") {
 			for(int i = 0; i < level.getNumDestroyerShip(); i++) {
 				GameObject destroyerShip = new DestroyerShip(game, 3, Game.DIM_X/2 + i, 1, 1, 1, 10);
-				board.add(destroyerShip.addBomb());		
+//				board.add(destroyerShip.addBomb());		
 				board.add(destroyerShip);
 			}
 		}
 		else {
 			for(int i = 0; i < level.getNumDestroyerShip(); i++) {
 				GameObject destroyerShip = new DestroyerShip(game, 3, Game.DIM_X/2 - 1 + i, 1, 1, 1, 10);
-				board.add(destroyerShip.addBomb());		
+//				board.add(destroyerShip.addBomb());		
 				board.add(destroyerShip);	
 			}
 		}

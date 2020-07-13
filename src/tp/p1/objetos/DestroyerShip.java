@@ -5,11 +5,13 @@ import tp.p1.objetos.GameObject;
 
 public class DestroyerShip extends AlienShip {
 
-	private Bomb bomb;
+	private Bomb bomb;		
+	private boolean activeBomb;
 	
 	public DestroyerShip(Game game, int fila, int col, int live, int STRENGTH, int DAMAGE, int POINTS) {
 		super(game, fila, col, live, STRENGTH, DAMAGE, POINTS);
-		bomb = new Bomb(game, getFila(), getCol(), 1, false);
+	//	bomb = new Bomb(game, getFila(), getCol(), 1, false);
+		activeBomb = false;
 	}
 	
 
@@ -25,8 +27,11 @@ public class DestroyerShip extends AlienShip {
 	
 	@Override
 	public void computerAction() {
-		if(IExecuteRandomActions.canGenerateRandomBomb(game) && !this.bomb.enableWeapon) {
-			this.bomb.enableWeapon = true;
+		if(IExecuteRandomActions.canGenerateRandomBomb(game) && !this.activeBomb/*!this.bomb.enableWeapon*/) {
+//			this.bomb.enableWeapon = true;
+			this.activeBomb = true;
+			Bomb bomb = new Bomb(game, getFila(), getCol(), 1, true);
+			this.game.addObject(bomb);
 		}
 	}
 
