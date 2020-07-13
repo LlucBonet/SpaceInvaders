@@ -17,6 +17,7 @@ public class Bomb extends Weapon implements IExecuteRandomActions {
 	@Override
 	public boolean onDelete() {
 		//this.enableWeapon = false;
+		ship.setActiveBomb(false);
 		this.live = 0;
 		return true;
 	}

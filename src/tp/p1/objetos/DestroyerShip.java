@@ -14,7 +14,9 @@ public class DestroyerShip extends AlienShip {
 		activeBomb = false;
 	}
 	
-
+	void setActiveBomb(boolean active) {
+		this.activeBomb = active;
+	}
 
 	public void moveBomb() {
 //		if(!this.bomb.enableWeapon) {
