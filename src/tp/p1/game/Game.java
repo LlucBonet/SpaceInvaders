@@ -3,7 +3,6 @@ package tp.p1.game;
 import tp.p1.controlador.CommandExecuteException;
 import tp.p1.objetos.AlienShip;
 import tp.p1.objetos.GameObject;
-import tp.p1.objetos.UCMMissile;
 import tp.p1.objetos.UCMShip;
 import java.util.Random;
 
@@ -66,7 +65,7 @@ public class Game implements IPlayerController {
 	
 	public String stringifierInfo() {
 		return " -SpaceInvaders v2.0- \n\n" + "G;" + this.currentCycle + "\n" +
-				this.getLevel() + "\n" +  this.board.stringifierToString();
+				"L;" + this.getLevel() + "\n" +  this.board.stringifierToString();
 	}
 	
 	public void reset() {

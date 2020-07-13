@@ -20,7 +20,8 @@ public class UCMSupermissile extends Weapon {
 	@Override
 	public boolean onDelete() {
 		//this.enableWeapon = false;
-		this.live = 0;
+		UCMShip.missile = false;
+		this.live = 0; 
 		return true;
 		
 	}

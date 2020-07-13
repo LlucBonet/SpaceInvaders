@@ -108,7 +108,7 @@ public class GameObjectBoard {
 	}
 	
 	private void removeDead() {
-		for(int i = 0; i < this.getCurrentObjects() - 1; i++) { //Recorre hasta penúltimo obj, no llega a player, 
+		for(int i = 0; i < this.getCurrentObjects(); i++) { //Recorre hasta penúltimo obj, no llega a player, 
 															  //no queremos q se elimine en ningún caso
 			if(!objects[i].isAlive()) {
 				remove(objects[i]);

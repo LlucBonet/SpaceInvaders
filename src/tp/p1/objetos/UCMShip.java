@@ -4,7 +4,7 @@ import tp.p1.controlador.CommandExecuteException;
 import tp.p1.game.Game;
 
 public class UCMShip extends Ship {
-	private boolean missile;
+	static boolean missile;
 	private int numSuperMissile;
 	
 	
@@ -12,11 +12,12 @@ public class UCMShip extends Ship {
 		super(game, fila, col, live, STRENGTH, DAMAGE, POINTS);
 		//missile = new UCMMissile(game, getFila(), getCol(), 1);
 		//game.addObject(missile);
-		
+		missile = false;
+		numSuperMissile = 0;
 	}
 
 	public int getNumSuperMissile() {
-		return this.numSuperMissile;
+		return numSuperMissile;
 	}
 	
 	public int getPOINTS() {
@@ -27,22 +28,27 @@ public class UCMShip extends Ship {
 		return this.POINTS = points;
 	}
 	
+	@Override
+	public void buySuperMissile() {
+		numSuperMissile++;
+	}
+	
 	public boolean ucmShoots(boolean superMissile) throws CommandExecuteException {
 		if(superMissile && numSuperMissile > 0 && !missile) {
 			UCMSupermissile supermis = new UCMSupermissile(game, this.fila, this.col, 1);
 			game.addObject(supermis);
 			numSuperMissile--;
-			this.missile = true;
+			missile = true;
 			return true;
 		}
-		else if(superMissile && numSuperMissile > 0) {
+		else if(superMissile && numSuperMissile > 0 && missile) {
 			throw new CommandExecuteException("sm");
 		}
 		else if(superMissile && numSuperMissile == 0) {
 			throw new CommandExecuteException("noSm");
 		}
 		else if(!superMissile && !missile){
-			this.missile = true;
+			missile = true;
 			UCMMissile mis = new UCMMissile(game, this.fila, this.col, 1);
 			game.addObject(mis);
 			return true;
@@ -80,9 +86,12 @@ public class UCMShip extends Ship {
 	@Override
 	public String stringifierToString() {
 		String misil = "";
-		if/*(this.missile.enableWeapon)*/(this.missile)
-			misil = ";misil en tablero";
-		return "P;" + this.col + "," +  this.fila + ";" + this.live + ";" + this.POINTS + misil + "\n"; 
+		if/*(this.missile.enableWeapon)*/(missile)
+			misil = "misil en tablero";
+		else {
+			misil = "no misil en tablero";
+		}
+		return "P;" + this.col + "," +  this.fila + ";" + this.live + ";" + this.POINTS + ";" + misil + ";" + numSuperMissile + "\n"; 
 	}
 	
 	//IMPLEMENTS IGAMEFLOW
