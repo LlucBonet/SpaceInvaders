@@ -4,7 +4,9 @@ import tp.p1.controlador.CommandExecuteException;
 import tp.p1.game.Game;
 
 public class UCMShip extends Ship {
-	private UCMMissile missile;
+	private boolean missile;
+	private int numSuperMissile;
+	
 	
 	public UCMShip(Game game, int fila, int col, int live, int STRENGTH, int DAMAGE, int POINTS) {
 		super(game, fila, col, live, STRENGTH, DAMAGE, POINTS);
@@ -13,12 +15,39 @@ public class UCMShip extends Ship {
 		
 	}
 
+	public int getNumSuperMissile() {
+		return this.numSuperMissile;
+	}
+	
 	public int getPOINTS() {
 		return this.POINTS;
 	}
 
 	public int setPoints(int points) {
 		return this.POINTS = points;
+	}
+	
+	public boolean ucmShoots(boolean superMissile) throws CommandExecuteException {
+		if(superMissile && numSuperMissile > 0 && !missile) {
+			UCMSupermissile supermis = new UCMSupermissile(game, this.fila, this.col, 1);
+			game.addObject(supermis);
+			numSuperMissile--;
+			this.missile = true;
+			return true;
+		}
+		else if(superMissile && numSuperMissile > 0) {
+			throw new CommandExecuteException("sm");
+		}
+		else if(superMissile && numSuperMissile == 0) {
+			throw new CommandExecuteException("noSm");
+		}
+		else if(!superMissile && !missile){
+			this.missile = true;
+			UCMMissile mis = new UCMMissile(game, this.fila, this.col, 1);
+			game.addObject(mis);
+			return true;
+		}
+		else throw new CommandExecuteException("s");
 	}
 	
 	//OVERRIDES GAMEOBJECT
@@ -51,7 +80,7 @@ public class UCMShip extends Ship {
 	@Override
 	public String stringifierToString() {
 		String misil = "";
-		if/*(this.missile.enableWeapon)*/(this.missile != null)
+		if/*(this.missile.enableWeapon)*/(this.missile)
 			misil = ";misil en tablero";
 		return "P;" + this.col + "," +  this.fila + ";" + this.live + ";" + this.POINTS + misil + "\n"; 
 	}

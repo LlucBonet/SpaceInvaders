@@ -3,11 +3,11 @@ package tp.p1.objetos;
 import tp.p1.controlador.CommandExecuteException;
 import tp.p1.game.Game;
 
-public class UCMMissile extends Weapon {
+public class UCMSupermissile extends Weapon {
 //	private static int numSuperMissile;
 //	private boolean superMissile;
 	
-	public UCMMissile(Game game, int fila, int col, int live) {
+	public UCMSupermissile(Game game, int fila, int col, int live) {
 		super(game, fila, col, live);
 //		numSuperMissile = 0;
 	}
@@ -48,8 +48,7 @@ public class UCMMissile extends Weapon {
 	@Override
 	public String stringifierToString() {
 		//if(this.enableWeapon) {
-		//	if(this.superMissile) return  "X;" + this.col + "," +  this.fila + "\n";
-			/*else*/ return "M;" + this.col + "," +  this.fila + "\n";		
+			return  "X;" + this.col + "," +  this.fila + "\n";	
 //		}
 //		else return "";
 	}
@@ -58,45 +57,46 @@ public class UCMMissile extends Weapon {
 	//OVERRIDES IGAMEFLOW
 	@Override
 	public boolean enableWeapon(boolean superMissile) throws CommandExecuteException {
-//		if(superMissile && numSuperMissile > 0 /*&& !this.enableWeapon*/) {
+	/*	if(superMissile && numSuperMissile > 0 /*&& !this.enableWeapon) {
 			//this.enableWeapon = true;
-//			numSuperMissile--;
-//			this.superMissile = true;
+	/*		numSuperMissile--;
+			this.superMissile = true;
 			return true;
-//		}
+		}
 //		else if(superMissile && numSuperMissile > 0 && this.enableWeapon) {
 //			throw new CommandExecuteException("sm");
 //		}
-//		else if(superMissile && numSuperMissile == 0) {
-//			throw new CommandExecuteException("noSm");
-//		}
-//		else if(!superMissile /*&& !this.enableWeapon*/){
+		else if(superMissile && numSuperMissile == 0) {
+			throw new CommandExecuteException("noSm");
+		}
+		else if(!superMissile /*&& !this.enableWeapon){
 			//this.enableWeapon = true;
-//			this.superMissile = false;
-//			return true;
-//		}
-//		else throw new CommandExecuteException("s");
+	/*		this.superMissile = false;
+			return true;
+		}
+		else throw new CommandExecuteException("s");*/
+			return true;
 	}
 	
 	@Override
 	public void buySuperMissile() {
-//		numSuperMissile++;
+	//	numSuperMissile++;
 	}
 
 	//OVERRIDES IATTACK
 	public void performAttack(GameObject other) {
 		if(/*this.enableWeapon &&*/ this.fila == other.fila && this.col == other.col) {
 			if(!other.equals(this)) {
-//				if(this.superMissile) {
-//					if(other.receiveMissileAttack(2)) {
-//						this.onDelete();
-//					} 
-//				}
-//				else if(!this.superMissile) {
+			//	if(this.superMissile) {
+					if(other.receiveMissileAttack(2)) {
+						this.onDelete();
+					} 
+				/*}
+				else if(!this.superMissile) {
 					if(other.receiveMissileAttack(1)) {
 						this.onDelete();
 					}
-//				}
+				}*/
 			}
 		}
 	}

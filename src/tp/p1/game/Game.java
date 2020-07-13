@@ -20,6 +20,7 @@ public class Game implements IPlayerController {
 	GamePrinter gp;
 	private UCMShip player;
 	
+	
 	private boolean sw = false;
 	private boolean doExit;
 	private BoardInitializer initializer;
@@ -119,7 +120,7 @@ public class Game implements IPlayerController {
 				 "Points: " + this.player.getPOINTS() + "\n" +
 				 "Remaing aliens: " + AlienShip.getNumAliens() + "\n" +
 				 "ShockWave: " +  s + "\n" +
-				 "SuperMissile: " + UCMMissile.getNumSuperMissile() + "\n" ;
+				 "SuperMissile: " + this.player.getNumSuperMissile() + "\n" ;
 		return string;	
 	}
 	
@@ -149,8 +150,9 @@ public class Game implements IPlayerController {
 	 }
 
 	@Override
-	public boolean shootMissile(boolean superMissile) throws CommandExecuteException {
-		return this.board.shoot(superMissile);
+	public boolean shootMissile(boolean superMissile) throws CommandExecuteException {		
+	//	return this.board.shoot(superMissile);
+		return this.player.ucmShoots(superMissile);
 	}
 
 	@Override
