@@ -17,10 +17,10 @@ public class DestroyerShip extends AlienShip {
 
 
 	public void moveBomb() {
-		if(!this.bomb.enableWeapon) {
-			this.bomb.fila = this.fila;
-			this.bomb.col = this.col;
-		}
+//		if(!this.bomb.enableWeapon) {
+//			this.bomb.fila = this.fila;
+//			this.bomb.col = this.col;
+//		}
 	}
 	
 	//IMPLEMENTS GAMEOBJECT
@@ -29,8 +29,8 @@ public class DestroyerShip extends AlienShip {
 	public void computerAction() {
 		if(IExecuteRandomActions.canGenerateRandomBomb(game) && !this.activeBomb/*!this.bomb.enableWeapon*/) {
 //			this.bomb.enableWeapon = true;
+			Bomb bomb = new Bomb(game, this.fila, this.col, 1, this);
 			this.activeBomb = true;
-			Bomb bomb = new Bomb(game, getFila(), getCol(), 1, true);
 			this.game.addObject(bomb);
 		}
 	}
@@ -74,13 +74,13 @@ public class DestroyerShip extends AlienShip {
 	public GameObject addBomb() {
 		return bomb;
 	}
-	public boolean remove() {
-		if(!this.bomb.enableWeapon) {
-			this.bomb = null;
-			return true;
-		}
-		else return false;
-	}
+//	public boolean remove() {
+//		if(!this.bomb.enableWeapon) {
+//			this.bomb = null;
+//			return true;
+//		}
+//		else return false;
+//	}
 	
 	//OVERRIDES IATTACK
 	public boolean receiveMissileAttack(int damage) {

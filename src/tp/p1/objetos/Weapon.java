@@ -3,11 +3,11 @@ package tp.p1.objetos;
 import tp.p1.game.Game;
 
 public abstract class Weapon extends GameObject { 
-	protected boolean enableWeapon;
+//	protected boolean enableWeapon;
 	
-	public Weapon(Game game, int fila, int col, int live, boolean enableWeapon) {
+	public Weapon(Game game, int fila, int col, int live ) {
 		super(game, fila, col, live);
-		this.enableWeapon = enableWeapon;
+		//this.enableWeapon = enableWeapon;
 	}
 	
 	@Override

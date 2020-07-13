@@ -2,44 +2,50 @@ package tp.p1.objetos;
 
 import tp.p1.game.Game;
 
+
 public class Bomb extends Weapon implements IExecuteRandomActions {
-	public Bomb(Game game, int fila, int col, int live, boolean enableWeapon) {
-		super(game, fila, col, live, enableWeapon);
+	private DestroyerShip ship;
+
+	public Bomb(Game game, int fila, int col, int live, DestroyerShip ship) {
+		super(game, fila, col, live);
+		
+		this.ship = ship;
 	}
 	
 
 	//IMPLEMENTS GAMEOBJECT
 	@Override
 	public boolean onDelete() {
-		this.enableWeapon = false;
-		this.live = 1;
-		return false;
+		//this.enableWeapon = false;
+		this.live = 0;
+		return true;
 	}
 
 	@Override
 	public void move() {
-		if(this.enableWeapon) {
+		//if(this.enableWeapon) {
 			this.fila++;
 			if(this.isOut()) {
-				this.enableWeapon = false;
+				//this.enableWeapon = false;
+				this.onDelete();
 			}
-		}	
+		//}	
 	}
 	
 	@Override
 	public String toString() {
-		if(this.enableWeapon) {
+		//if(this.enableWeapon) {
 			return ".";
-		}
-		else return " ";
+		//}
+		//else return " ";
 	}
 	
 	@Override
 	public String stringifierToString() {
-		if(this.enableWeapon) {
+		//if(this.enableWeapon) {
 			return "B;" + this.col + "," +  this.fila + "\n";
-		}
-		else return "";
+		//}
+		//else return "";
 	}
 	
 	//OVERRIDES IGAMEFLOW
@@ -50,7 +56,7 @@ public class Bomb extends Weapon implements IExecuteRandomActions {
 	
 	//OVERRIDES IATTACK
 	public void performAttack(GameObject other) {
-		if(this.enableWeapon && this.fila == other.fila && this.col == other.col && !other.equals(this)) {
+		if(/*this.enableWeapon &&*/ this.fila == other.fila && this.col == other.col && !other.equals(this)) {
 			if(other.receiveBombAttack(1)) {
 				this.onDelete();
 			}
@@ -58,10 +64,10 @@ public class Bomb extends Weapon implements IExecuteRandomActions {
 	}
 	
 	public boolean receiveMissileAttack(int damage) {
-		if(this.enableWeapon) {
+		//if(this.enableWeapon) {
 			this.onDelete();
 			return true;
-		}
-		else return false;
+		//}
+		//else return false;
 	}
 }

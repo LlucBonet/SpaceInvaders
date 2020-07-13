@@ -48,21 +48,21 @@ public class GameObjectBoard {
 	private void remove (GameObject object) {
 		int pos = getIndex(object.getFila(), object.getCol());
 		object = null;
-		if(objects[pos].remove()) { //Comprueba si hay un objeto con bomba no enable. Si la hay también la elimina
-			objects[pos] = null;
-			objects[pos - 1] = null;
-			for(int i = pos - 1; i < this.currentObjects; i++) {
-				objects[i] = objects[i+2];
-			}
-			this.currentObjects -= 2;
-		}
-		else {				
+//		if(objects[pos].remove()) { //Comprueba si hay un objeto con bomba no enable. Si la hay también la elimina
+//			objects[pos] = null;
+//			objects[pos - 1] = null;
+//			for(int i = pos - 1; i < this.currentObjects; i++) {
+//				objects[i] = objects[i+2];
+//			}
+//			this.currentObjects -= 2;
+//		}
+//		else {				
 			objects[pos] = null;
 			for(int i = pos; i < this.currentObjects; i++) {
 				objects[i] = objects[i+1];
 			}
 			this.currentObjects--;
-		}
+//		}
 	}
 	
 	public void limit() {

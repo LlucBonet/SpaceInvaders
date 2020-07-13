@@ -7,8 +7,8 @@ public class UCMMissile extends Weapon {
 	private static int numSuperMissile;
 	private boolean superMissile;
 	
-	public UCMMissile(Game game, int fila, int col, int live, boolean enableWeapon) {
-		super(game, fila, col, live, enableWeapon);
+	public UCMMissile(Game game, int fila, int col, int live) {
+		super(game, fila, col, live);
 		numSuperMissile = 0;
 	}
 	
@@ -19,57 +19,59 @@ public class UCMMissile extends Weapon {
 	//IMPLEMENTS GAMEOBJECT
 	@Override
 	public boolean onDelete() {
-		this.enableWeapon = false;
-		this.live = 1;
-		return false;
+		//this.enableWeapon = false;
+		this.live = 0;
+		return true;
+		
 	}
 
 	@Override
 	public void move() {
-		if(this.enableWeapon) {
+		//if(this.enableWeapon) {
 			this.fila--;
 			if(this.isOut()) {
-				this.enableWeapon = false;
+				//this.enableWeapon = false;
+				this.onDelete();
 			}
-		}
+		//}
 	}
 
 	@Override
 	public String toString() {
-		if(this.enableWeapon) {
+		//if(this.enableWeapon) {
 			return "oo";
-		}
-		else return " ";
+		//}
+		//else return " ";
 	}
 
 	
 	@Override
 	public String stringifierToString() {
-		if(this.enableWeapon) {
+		//if(this.enableWeapon) {
 			if(this.superMissile) return  "X;" + this.col + "," +  this.fila + "\n";
 			else return "M;" + this.col + "," +  this.fila + "\n";		
-		}
-		else return "";
+//		}
+//		else return "";
 	}
 	
 	
 	//OVERRIDES IGAMEFLOW
 	@Override
 	public boolean enableWeapon(boolean superMissile) throws CommandExecuteException {
-		if(superMissile && numSuperMissile > 0 && !this.enableWeapon) {
-			this.enableWeapon = true;
+		if(superMissile && numSuperMissile > 0 /*&& !this.enableWeapon*/) {
+			//this.enableWeapon = true;
 			numSuperMissile--;
 			this.superMissile = true;
 			return true;
 		}
-		else if(superMissile && numSuperMissile > 0 && this.enableWeapon) {
-			throw new CommandExecuteException("sm");
-		}
+//		else if(superMissile && numSuperMissile > 0 && this.enableWeapon) {
+//			throw new CommandExecuteException("sm");
+//		}
 		else if(superMissile && numSuperMissile == 0) {
 			throw new CommandExecuteException("noSm");
 		}
-		else if(!superMissile && !this.enableWeapon){
-			this.enableWeapon = true;
+		else if(!superMissile /*&& !this.enableWeapon*/){
+			//this.enableWeapon = true;
 			this.superMissile = false;
 			return true;
 		}
@@ -83,7 +85,7 @@ public class UCMMissile extends Weapon {
 
 	//OVERRIDES IATTACK
 	public void performAttack(GameObject other) {
-		if(this.enableWeapon && this.fila == other.fila && this.col == other.col) {
+		if(/*this.enableWeapon &&*/ this.fila == other.fila && this.col == other.col) {
 			if(!other.equals(this)) {
 				if(this.superMissile) {
 					if(other.receiveMissileAttack(2)) {
@@ -100,11 +102,11 @@ public class UCMMissile extends Weapon {
 	}
 	
 	public boolean receiveBombAttack(int damage) {
-		if(this.enableWeapon) {
+		//if(this.enableWeapon) {
 			this.onDelete();
 			return true;
-		}
-		else return false;
+	//	}
+		//else return false;
 	}
 
 }

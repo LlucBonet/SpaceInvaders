@@ -8,8 +8,8 @@ public class UCMShip extends Ship {
 	
 	public UCMShip(Game game, int fila, int col, int live, int STRENGTH, int DAMAGE, int POINTS) {
 		super(game, fila, col, live, STRENGTH, DAMAGE, POINTS);
-		missile = new UCMMissile(game, getFila(), getCol(), 1, false);
-		game.addObject(missile);
+		//missile = new UCMMissile(game, getFila(), getCol(), 1);
+		//game.addObject(missile);
 		
 	}
 
@@ -32,10 +32,10 @@ public class UCMShip extends Ship {
 
 	@Override
 	public void move() {
-		if(!this.missile.enableWeapon) {
-			this.missile.fila = this.fila;
-			this.missile.col = this.col;
-		}
+//		if(!this.missile.enableWeapon) {
+//			this.missile.fila = this.fila;
+//			this.missile.col = this.col;
+//		}
 	}
 
 	@Override
@@ -51,7 +51,8 @@ public class UCMShip extends Ship {
 	@Override
 	public String stringifierToString() {
 		String misil = "";
-		if(this.missile.enableWeapon) misil = ";misil en tablero";
+		if/*(this.missile.enableWeapon)*/(this.missile != null)
+			misil = ";misil en tablero";
 		return "P;" + this.col + "," +  this.fila + ";" + this.live + ";" + this.POINTS + misil + "\n"; 
 	}
 	

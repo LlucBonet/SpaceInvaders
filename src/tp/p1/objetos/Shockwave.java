@@ -5,8 +5,8 @@ import tp.p1.game.Game;
 
 public class Shockwave extends Weapon {
 
-	public Shockwave(Game game, int fila, int col, int live, boolean enableWeapon) {
-		super(game, fila, col, live, enableWeapon);
+	public Shockwave(Game game, int fila, int col, int live) {
+		super(game, fila, col, live);
 	}
 	
 //	public void setSw(boolean Sw) {
@@ -19,8 +19,8 @@ public class Shockwave extends Weapon {
 	
 	@Override
 	public boolean onDelete() {
-		this.enableWeapon = false;
-		return false;		
+		//this.enableWeapon = false;
+		return true;		
 	}
 
 	@Override

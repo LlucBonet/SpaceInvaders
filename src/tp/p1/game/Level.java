@@ -47,11 +47,7 @@ public enum Level {
 			if (level.name().equalsIgnoreCase(cadenaEntrada)) {
 				return level;
 			}
-//			else {
-//				throw new CommandParseException("lev");
-//			}
 		}
 		throw new CommandParseException("lev");
-		//return EASY;
 	}
 }
