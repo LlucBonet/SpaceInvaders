@@ -48,7 +48,7 @@ public abstract class AlienShip extends EnemyShip {
 				else this.col--;
 			}
 		}
-		this.moveBomb();
+		//this.moveBomb();
 	}
 	
 	@Override
@@ -60,5 +60,5 @@ public abstract class AlienShip extends EnemyShip {
 	}
 	
 	//ABSTRACT METHODS
-	public abstract void moveBomb();
+	//public abstract void moveBomb();
 }

@@ -14,10 +14,6 @@ public class RegularShip extends AlienShip {
 		return this.POINTS;
 	}
 
-	//IMPLEMENTS ALIENSHIP
-	@Override
-	public void moveBomb() {}
-
 	
 	//IMPLEMENTS GAMEOBJECT
 	@Override

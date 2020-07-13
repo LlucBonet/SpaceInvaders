@@ -18,13 +18,7 @@ public class DestroyerShip extends AlienShip {
 		this.activeBomb = active;
 	}
 
-	public void moveBomb() {
-//		if(!this.bomb.enableWeapon) {
-//			this.bomb.fila = this.fila;
-//			this.bomb.col = this.col;
-//		}
-	}
-	
+		
 	//IMPLEMENTS GAMEOBJECT
 	
 	@Override
