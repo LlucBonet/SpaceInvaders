@@ -139,6 +139,7 @@ public class GameObjectBoard {
 	}
 	
 	public void ShockWave(){
+
 		for(int i = 0; i < this.currentObjects; i++) {
 			objects[i].receiveMissileAttack(1); //hace daño a los mismos objetos q el misil y de la misma forma											//Si en algún momento esto cambia, habría que crear un método específico para el sw
 		}

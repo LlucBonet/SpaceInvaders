@@ -5,8 +5,11 @@ import tp.p1.game.Game;
 
 public class Shockwave extends Weapon {
 
-	public Shockwave(Game game, int fila, int col, int live) {
+	private boolean enable;
+	
+	public Shockwave(Game game, int fila, int col, int live, boolean enable) {
 		super(game, fila, col, live);
+		this.enable = enable;
 	}
 	
 //	public void setSw(boolean Sw) {
@@ -44,16 +47,18 @@ public class Shockwave extends Weapon {
 	
 	
 	//OVERRIDES IATTACK
-//	public void performAttack(GameObject other) {
-//		if(this.enableWeapon) {
-//			if(other.receiveMissileAttack(1)) {
+	public void performAttack(GameObject other) {
+		if(this.enable) {
+			if(other.receiveMissileAttack(1)) {
+				
+			}
 //				this.enableWeapon = false;
 //					return true;
 //			}
 //			else return false;
-//		}
+		}
 //		else
 //		return false;	
-//	}
+	}
 
 }
