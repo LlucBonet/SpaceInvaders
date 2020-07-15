@@ -38,6 +38,7 @@ public class Game implements IPlayerController {
 		player = new UCMShip (this, DIM_Y - 1, DIM_X / 2, 3, 3, 1, 0);
 		initializer.initialize();
 		board.add(player);
+		GameObjectBoard.direccion = false;
 	}
 	
 	public Random getRandom() {

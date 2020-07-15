@@ -36,18 +36,22 @@ public abstract class AlienShip extends EnemyShip {
 	//OVERRIDES GAMEOBJECT
 	@Override
 	public void move() {
-		if(game.getCurrentCycle() % game.getLevel().getVelocidad() == 0) {
 			if(GameObjectBoard.bajar) {
 				fila ++;
 //				if(game.isFinished()) {
 //					game.getWinnerMessage();
 //				}
-			}
-			else{
 				if(GameObjectBoard.direccion) this.col++;
 				else this.col--;
 			}
-		}
+			else{
+				if(game.getCurrentCycle() % game.getLevel().getVelocidad() == 0) {
+
+					if(GameObjectBoard.direccion) this.col++;
+					else this.col--;
+				}
+			}
+		
 		//this.moveBomb();
 	}
 	

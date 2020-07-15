@@ -7,10 +7,12 @@ public class GameObjectBoard {
 	
 	private GameObject[] objects;
 	private int currentObjects;
-	public static boolean direccion = false;
-	public static boolean bajar = false;
+	public static boolean direccion;
+	public static boolean bajar;
 
 	public GameObjectBoard(int width, int height) {
+		direccion = false;
+		bajar = false;
 		this.currentObjects = 0;
 		objects = new GameObject[width*height]; 
 	}
@@ -65,24 +67,33 @@ public class GameObjectBoard {
 //		}
 	}
 	
-	public void limit() {
+	private boolean limit() {
 		for(int i = 0; i < this.currentObjects; i++) {
-			if(objects[i].limite() == true) bajar = true;
+			if(objects[i].limite() == true) {
+				bajar = true;
+				return true;
+			}
 		}
+		return false;
 	}
 	public void update() {
-		if(!bajar) { 
-			limit(); //Comprueba si los aliens tocan final tablero y aun no han bajado
-		}
-		else {
-			bajar = false;
-			if(direccion) direccion = false;
-			else direccion = true;
-		}
+		//if(!bajar) { 
+			if(limit()) { //Comprueba si los aliens tocan final tablero y aun no han bajado
+				//bajar = false;
+				if(direccion) direccion = false;
+				else direccion = true;
+			}
+		//}
+//		else {
+//			bajar = false;
+//			if(direccion) direccion = false;
+//			else direccion = true;
+//		}
 		for(int i = 0; i < this.currentObjects; i++) {
 			objects[i].move();
 			checkAttacks(objects[i]); //comprueba ataques que realiza/ recibe objects[i]
 		}
+		bajar = false;
 		removeDead();
 	}
 	
