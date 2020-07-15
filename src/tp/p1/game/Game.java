@@ -20,13 +20,14 @@ public class Game implements IPlayerController {
 	private UCMShip player;
 	
 	
-	private boolean sw = false;
+	private boolean sw;
 	private boolean doExit;
 	private BoardInitializer initializer;
 	
 	public Game (Level level, Random random) {
 		this.rand = random;
 		this.level = level;
+		this.sw = false;
 		initializer = new BoardInitializer();
 		initGame();
 	}
@@ -154,10 +155,13 @@ public class Game implements IPlayerController {
 		return this.player.ucmShoots(superMissile);
 	}
 
-	@Override
-	public void shockWave() {
-		this.board.ShockWave();
-	}
+//	@Override
+//	public void shockWave() throws CommandExecuteException {
+//		if(sw) {
+//			this.board.ShockWave();
+//		}
+//		else throw new CommandExecuteException("sw");
+//	}
 	
 	@Override
 	public boolean buySuperMissile() throws CommandExecuteException {
@@ -175,9 +179,9 @@ public class Game implements IPlayerController {
 	}
 
 	@Override
-	public void enableShockWave() throws CommandExecuteException {
+	public void shockWave() throws CommandExecuteException {
 		if(this.sw) {
-			this.shockWave();
+			this.board.ShockWave();
 			sw = false;
 		}
 		else throw new CommandExecuteException("sw");

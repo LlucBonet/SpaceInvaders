@@ -139,10 +139,12 @@ public class GameObjectBoard {
 	}
 	
 	public void ShockWave(){
-
+		
 		for(int i = 0; i < this.currentObjects; i++) {
-			objects[i].receiveMissileAttack(1); //hace daño a los mismos objetos q el misil y de la misma forma											//Si en algún momento esto cambia, habría que crear un método específico para el sw
+			//objects[i].receiveMissileAttack(1); //hace daño a los mismos objetos q el misil y de la misma forma											//Si en algún momento esto cambia, habría que crear un método específico para el sw
+			objects[i].receiveShockWaveAttack(1);
 		}
+		
 	}
 	
 	public boolean shoot(boolean superMissile) throws CommandExecuteException {
@@ -156,15 +158,19 @@ public class GameObjectBoard {
 	public void explosive(int fila, int col) {
 		for(int i = 0; i < this.currentObjects; i++) {
 			if((fila == objects[i].getFila()) && (col == objects[i].getCol() + 1||col == objects[i].getCol()- 1)){
-				objects[i].setLive(objects[i].getLive() - 1);
-				if(!objects[i].isAlive()) {
-					objects[i].onDelete();	
+				if(objects[i].isAlive()) {
+					objects[i].setLive(objects[i].getLive() - 1);
+					if(!objects[i].isAlive()) {
+						objects[i].onDelete();	
+					}
 				}
 			}
 			else if((fila == objects[i].getFila() + 1|| fila == objects[i].getFila() - 1) && (col == objects[i].getCol() + 1||col == objects[i].getCol() - 1 || col == objects[i].getCol())){
-				objects[i].setLive(objects[i].getLive() - 1);
-				if(!objects[i].isAlive()) {
-					objects[i].onDelete();	
+				if(objects[i].isAlive()) {
+					objects[i].setLive(objects[i].getLive() - 1);
+					if(!objects[i].isAlive()) {
+						objects[i].onDelete();	
+					}
 				}
 			} 
 		}

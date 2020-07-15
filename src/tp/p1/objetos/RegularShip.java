@@ -67,6 +67,20 @@ public class RegularShip extends AlienShip {
 	}
 	
 	//OVERRIDES IATTACK
+	
+	public boolean receiveShockWaveAttack(int damage) {
+		if(this.isAlive()) { //puede ser que llegue sin vida debido a la explosion de una nave explosiva
+			this.live -= damage;
+			if(!this.isAlive()) {
+				if(this.explosive) {
+					game.explosiveAction(this.fila, this.col);
+					this.onDelete();
+				}
+			}
+		}
+		return true;
+	}
+	
 	public boolean receiveMissileAttack(int damage) {
 		if(this.isAlive()) {
 			this.live -= damage;

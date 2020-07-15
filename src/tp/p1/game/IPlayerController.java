@@ -6,11 +6,11 @@ public interface IPlayerController {
 	//Player Actions
 	public boolean move(int numCells) throws CommandExecuteException;
 	public boolean shootMissile(boolean superMissile) throws CommandExecuteException;
-	public void shockWave();
+	public void shockWave() throws CommandExecuteException;
 	public boolean buySuperMissile() throws CommandExecuteException;
 	
 	//Callbacks
 	public void receivePoints(int points);
-	public void enableShockWave() throws CommandExecuteException;
+	//public void enableShockWave() throws CommandExecuteException;
 	public void enableMissile();
 }

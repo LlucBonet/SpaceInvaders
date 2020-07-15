@@ -79,6 +79,16 @@ public class DestroyerShip extends AlienShip {
 //	}
 	
 	//OVERRIDES IATTACK
+	public boolean receiveShockWaveAttack(int damage) {
+		if(this.isAlive()) { //puede ser que llegue hasta aqui sin vida debido a una nave explosiva
+			this.live -= damage;
+			if(!this.isAlive()) {
+				this.onDelete();
+			}
+		}
+		return true;
+	}
+	
 	public boolean receiveMissileAttack(int damage) {
 		if(this.isAlive()) {
 			this.live -= damage;
